@@ -1,4 +1,3 @@
-
 require_relative 'human.rb'
 require_relative 'computer.rb'
 
@@ -13,43 +12,40 @@ class Game
   private
 
   def run_game_maker
-    code = @player.pick_code
     guess = %w[1 1 2 2]
-    for i in 0..12
-      if i == 12 
-        puts "You win!"
+    13.times do |i|
+      if i == 12
+        puts 'You win!'
         break
       end
       puts "\nTurn ##{i + 1}: The computer guesses #{guess}"
-      if check_winner(guess, code)
-        puts "You lose!"
+      if check_winner(guess, @player.code)
+        puts 'You lose!'
         break
       end
-      clues = @player.clues(guess, code)
+      clues = @computer.clues(guess, @player.code)
       guess = @computer.computer_play(guess, clues)
     end
   end
 
   def run_game_breaker
-    code = @computer.generate_code
-    for i in 0..12
+    13.times do |i|
       if i == 12
         puts 'You lose!'
-        print code
+        print @computer.code
         break
       end
       puts "\nTurn ##{i + 1}: Type in four numbers (1-6)"
       guess = @player.guess_code
-      if check_winner(guess, code)
+      if check_winner(guess, @computer.code)
         puts 'You win!'
         break
       end
-      print @computer.clues(guess, code)
+      print @computer.clues(guess, @computer.code)
     end
   end
 
   def check_winner(guess, code)
     return true if guess == code
   end
-
 end
