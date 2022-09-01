@@ -23,8 +23,8 @@ class Computer
     j = (code_copy.length - 1)
     while j >= 0
       if guess_copy.include?(code_copy[j])
-        index = guess_copy.index(code_copy[j])
-        guess_copy.delete_at(index)
+        #index = guess_copy.index(code_copy[j])
+        guess_copy.delete_at(guess_copy.index(code_copy[j]))
         code_copy.delete_at(j)
         clue_arr.push('o')
       end
