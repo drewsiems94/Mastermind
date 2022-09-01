@@ -8,13 +8,32 @@ class Person
   end
 
   def guess_code
-    gets.chomp.split('')
+    guess = gets.chomp.split('')
+    until check_code(guess)
+      puts "Try a new code: "
+      guess = gets.chomp.split('')
+    end
+    guess
   end
 
   private
 
   def pick_code
     puts "\nPlease enter the four numbers for your secret code (1-6): "
-    gets.chomp.split('')
+    code = gets.chomp.split('')
+    until check_code(code)
+      puts "Try a new code: "
+      code = gets.chomp.split('')
+    end
+    code
+  end
+
+  def check_code(code)
+    valid = %w[1 2 3 4 5 6]
+    if code.length == 4 && code.all? {|num| valid.include?(num) }
+      return true
+    else
+      return false
+    end
   end
 end
