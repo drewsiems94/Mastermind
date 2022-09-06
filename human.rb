@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# This class allows the user to pick a code or guess the computer's code
 class Person
   attr_reader :code, :play_type
 
