@@ -4,7 +4,7 @@ require_relative 'game'
 
 puts <<~INTRO
 
-Let's play Mastermind!!
+Let's play Mastermind!
 
 Mastermind is a code-breaking game between two players:
   - The code BREAKER
@@ -20,6 +20,8 @@ the guess contains a correct number in the wrong position, while an
 
 NOTE that these clues appear in no particular order, so the breaker won't
 explicitly know WHICH numbers have been guessed correctly via the keys alone.
+
+GOOD LUCK!
 
 INTRO
 
