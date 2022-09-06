@@ -6,4 +6,4 @@ The goal was to build a Mastermind game from the command line where you have 12 
 
 For the computer's guesses, I used the Swaszek Strategy wherein potential codes are eliminated from a list of all possible codes based on the clues provided.
 
-[![Run on Repl.it](https://replit.com/badge/github/drewsiems94/Mastermind)](https://replit.com/new/github/drewsiems94/Mastermind)
+Click the following link to play: https://replit.com/@drewsiems94/Mastermind#.replit
