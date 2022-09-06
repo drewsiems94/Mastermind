@@ -1,3 +1,4 @@
+# This class contains the logic for the computer's play 
 class Computer
   attr_reader :code
 
@@ -34,8 +35,12 @@ class Computer
   end
 
   def check_value(guess, code, clues)
-    code.sort.each_with_index do |num, index|
-      clues.push('o') if num == guess.sort[index]
+    code.reverse_each do |num|
+      if guess.include?(num)
+        guess.delete_at(guess.index(num))
+        code.delete(num)
+        clues.push('o')
+      end
     end
     clues
   end
