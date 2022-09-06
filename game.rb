@@ -33,23 +33,23 @@ class Game
       guess = @player.guess_code
       break if check_winner(guess, @computer.code)
 
-      print @computer.clues(guess, @computer.code)
+      print "Clues: #{@computer.clues(guess, @computer.code)}"
     end
   end
 
   def check_winner(guess, code)
     if guess == code && @player.play_type == 1
-      puts 'You lose!'
+      puts "\nYou lose!"
       true
     elsif guess == code && @player.play_type == 2
-      puts 'You win!'
+      puts "\nYou win!"
       true
     end
   end
 
   def lose?(count)
     if count == 12
-      print "\nYou lose!\n#{@computer.code}"
+      print "\nYou lose!\nThe code was #{@computer.code}"
       true
     end
   end
