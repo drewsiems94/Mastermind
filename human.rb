@@ -10,7 +10,7 @@ class Person
   def guess_code
     guess = gets.chomp.split('')
     until check_code(guess)
-      puts "Try a new code: "
+      puts 'Try a new code: '
       guess = gets.chomp.split('')
     end
     guess
@@ -22,7 +22,7 @@ class Person
     puts "\nPlease enter the four numbers for your secret code (1-6): "
     code = gets.chomp.split('')
     until check_code(code)
-      puts "Try a new code: "
+      puts 'Try a new code: '
       code = gets.chomp.split('')
     end
     code
@@ -30,10 +30,10 @@ class Person
 
   def check_code(code)
     valid = %w[1 2 3 4 5 6]
-    if code.length == 4 && code.all? {|num| valid.include?(num) }
-      return true
+    if code.length == 4 && code.all? { |num| valid.include?(num) }
+      true
     else
-      return false
+      false
     end
   end
 end

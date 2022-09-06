@@ -1,6 +1,9 @@
-require_relative 'human.rb'
-require_relative 'computer.rb'
+# frozen_string_literal: true
 
+require_relative 'human'
+require_relative 'computer'
+
+# This class runs the game
 class Game
   def initialize
     @player = Person.new
@@ -14,15 +17,9 @@ class Game
   def run_game_maker
     guess = %w[1 1 2 2]
     13.times do |i|
-      if i == 12
-        puts 'You win!'
-        break
-      end
       puts "\nTurn ##{i + 1}: The computer guesses #{guess}"
-      if check_winner(guess, @player.code)
-        puts 'You lose!'
-        break
-      end
+      break if check_winner(guess, @player.code)
+
       clues = @computer.clues(guess, @player.code)
       guess = @computer.computer_play(guess, clues)
     end
@@ -30,22 +27,30 @@ class Game
 
   def run_game_breaker
     13.times do |i|
-      if i == 12
-        puts 'You lose!'
-        print @computer.code
-        break
-      end
+      break if lose?(i)
+
       puts "\nTurn ##{i + 1}: Type in four numbers (1-6)"
       guess = @player.guess_code
-      if check_winner(guess, @computer.code)
-        puts 'You win!'
-        break
-      end
+      break if check_winner(guess, @computer.code)
+
       print @computer.clues(guess, @computer.code)
     end
   end
 
   def check_winner(guess, code)
-    return true if guess == code
+    if guess == code && @player.play_type == 1
+      puts 'You lose!'
+      true
+    elsif guess == code && @player.play_type == 2
+      puts 'You win!'
+      true
+    end
+  end
+
+  def lose?(count)
+    if count == 12
+      print "\nYou lose!\n#{@computer.code}"
+      true
+    end
   end
 end

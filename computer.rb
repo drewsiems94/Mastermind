@@ -8,33 +8,35 @@ class Computer
   end
 
   def clues(guess, code)
-    code_copy = code.clone
-    guess_copy = guess.clone
-    clue_arr = []
-    i = 3
-    while i >= 0
-      if guess_copy[i] == code_copy[i]
-        code_copy.delete_at(i)
-        guess_copy.delete_at(i)
-        clue_arr.push('x')
-      end
-      i -= 1
-    end
-    j = (code_copy.length - 1)
-    while j >= 0
-      if guess_copy.include?(code_copy[j])
-        #index = guess_copy.index(code_copy[j])
-        guess_copy.delete_at(guess_copy.index(code_copy[j]))
-        code_copy.delete_at(j)
-        clue_arr.push('o')
-      end
-      j -= 1
-    end
-    clue_arr
+    temp_guess = guess.clone
+    temp_code = code.clone
+    clues = check_position(temp_guess, temp_code)
+    check_value(temp_guess, temp_code, clues)
   end
 
   def computer_play(guess, clues)
     @list.reject! { |code| clues != clues(guess, code) }
-    @list[0]
+    @guess = @list[0]
+  end
+
+  private
+
+  def check_position(guess, code)
+    clue_array = []
+    (code.length - 1).downto(0) do |i|
+      if code[i] == guess[i]
+        code.delete_at(i)
+        guess.delete_at(i)
+        clue_array.push('x')
+      end
+    end
+    clue_array
+  end
+
+  def check_value(guess, code, clues)
+    code.sort.each_with_index do |num, index|
+      clues.push('o') if num == guess.sort[index]
+    end
+    clues
   end
 end

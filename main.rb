@@ -1,12 +1,14 @@
-require_relative 'game.rb'
+# frozen_string_literal: true
 
-puts  <<~INTRO
+require_relative 'game'
+
+puts <<~INTRO
 
 Let's play Mastermind!!
 
 Mastermind is a code-breaking game between two players:
-    - The code BREAKER
-    - The code SETTER
+  - The code BREAKER
+  - The code SETTER
 
 The code SETTER sets the code, which is a sequence of four
 numbers, chosen from (1-6).
